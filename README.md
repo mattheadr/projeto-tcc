@@ -28,14 +28,14 @@ Mapa/Localização: react-native-maps + expo-location
 │ docker-compose.yml
 │ README.md
 │
-├── newcheck-expo-v5.6/        # App (React Native + Expo)
+├── newcheck-expo/        # App (React Native + Expo)
 │   ├── App.js
 │   ├── screens/
 │   ├── components/
 │   ├── utils/
 │   └── config/
 │
-└── newcheck-api-v5.6/         # API (Node.js + Express + MySQL)
+└── newcheck-api/         # API (Node.js + Express + MySQL)
     ├── server.js
     ├── db.js
     ├── routes/
@@ -59,7 +59,7 @@ MySQL → porta 3306 (banco: sistema_agendamento)
 
 API → porta 3000 (http://localhost:3000)
 
-Scripts SQL são executados automaticamente em newcheck-api-v5.6/sql:
+Scripts SQL são executados automaticamente em newcheck-api:
 
 init_db.sql → cria tabelas
 
@@ -76,7 +76,7 @@ Node.js LTS
 Expo CLI (npm install -g expo-cli ou usar npx expo)
 
 2. Instalar dependências
-cd newcheck-expo-v5.6
+cd newcheck-expo
 npm install
 
 3. Iniciar
@@ -127,7 +127,7 @@ mysql -u root -p < newcheck-api-v5.6/sql/seed_medicos.sql
 ajuste de credenciais
 
 3. Rodar API
-cd newcheck-api-v5.6
+cd newcheck-api
 npm install
 npm run dev
 
@@ -167,3 +167,4 @@ Este projeto está licenciado sob a licença do CPS - ETEC ERMELINDA GIANNINI TE
 Código Fonte sob licença APACHE 2.0 
 
 Elementos Visuais sob Creative Commons By Figma
+
