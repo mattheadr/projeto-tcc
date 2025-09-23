@@ -1,31 +1,29 @@
 README - NewCheck
- Visão Geral
 
-O NewCheck é um sistema de agendamento de consultas médicas composto por:
+## Descrição
 
-Aplicativo (React Native + Expo) → interface do paciente e médico
+Este projeto consiste em um sistema de agendamento para hospitais pelos alunos do curso técnico de Desenvolvimento de Sistemas da ETEC Ermelinda Giannini Teixeira.
+A aplicação permite que os usuários marquem consultas, controlem seus horários, permite a verificação de consultas marcadas(tanto para clientes quanto para médicos) e facilita a conexão hospital-paciente
 
-API (Node.js + Express + MySQL) → lógica de autenticação, médicos, pacientes e consultas
+## Tecnologias utilizadas
 
-Banco de Dados (MySQL) → persistência de dados
-
-Docker Compose → sobe tudo com um único comando
-
-  Tecnologias
-
-Frontend Mobile: React Native (Expo)
-
-Backend API: Node.js + Express
-
-Banco: MySQL 8
-
-Autenticação: JWT
+-Frontend Mobile: React Native (Expo)
+-Frontend: CSS + Next.js
+-Backend: Javascript + react-native
+-Backend API: Node.js + Express
+-Banco: MySQL 
+-Autenticação: JWT
 
 Validações: Yup + utilitários próprios
-
 Mapa/Localização: react-native-maps + expo-location
 
-📂 Estrutura do Projeto
+## Funcionalidades
+ -Cadastro/Login clientes e médicos
+ -Agendamento com data, médico, tipo, horário, preço e local no mapa
+ -JWT + validação de campos
+ -Docker Compose funcional
+
+## Estrutura do Projeto
 .
 │ docker-compose.yml
 │ README.md
@@ -44,7 +42,7 @@ Mapa/Localização: react-native-maps + expo-location
     ├── sql/
     └── .env.example
 
-  Rodando com Docker (recomendado)
+## Rodando com Docker (recomendado)
 1. Pré-requisitos
 
 Docker + Docker Compose instalados
@@ -69,7 +67,7 @@ alter_add_lat_long.sql → adiciona latitude/longitude
 
 seed_medicos.sql → insere médico/cliente de teste
 
-Rodando o App (Expo)
+## Rodando o App (Expo)
 
 1. Pré-requisitos
 
@@ -94,7 +92,7 @@ Login/Cadastro → cria usuário paciente ou médico
 
 Solicitar Consulta → agenda com calendário, médico disponível, horário e local no mapa
 
-🔑 Endpoints principais da API
+Endpoints principais da API
 Autenticação Cliente
 
 POST /api/auth/cliente/register → cadastra cliente
@@ -119,7 +117,7 @@ GET /api/consultas?cpf=123...&crm=CRM123...
 
 GET /api/consultas/horarios?data=YYYY-MM-DD&crm=CRM12345
 
-🔧 Modo Local (sem Docker)
+ Modo Local (sem Docker)
 1. Criar banco manualmente
 mysql -u root -p < newcheck-api-v5.6/sql/init_db.sql
 mysql -u root -p < newcheck-api-v5.6/sql/seed_medicos.sql
@@ -133,8 +131,8 @@ cd newcheck-api-v5.6
 npm install
 npm run dev
 
-4. Rodar App (igual explicado acima)
-👤 Usuários de teste
+4. Rodar Seed
+ Usuários de teste
 
 Após rodar seed_medicos.sql, você terá:
 
@@ -150,12 +148,22 @@ CPF: 12345678900
 
 Senha: Cadastro via API
 
-Status:
+(Cadastro feito para teste)
 
- Cadastro/Login clientes e médicos
+5. Rodar app
 
- Agendamento com data, médico, tipo, horário, preço e local no mapa
+npx expo start
 
- JWT + validação de campos
+ ## Autores
+ -Arildo Matheus
+ -Davi Oliveira Lopes
+ -Edgard Fernandes da Costa
+ -Hamilton Rodrigues
 
- Docker Compose funcional
+ ## Licença 
+
+Este projeto está licenciado sob a licença do CPS - ETEC ERMELINDA GIANNINI TEIXEIRA. 
+
+Código Fonte sob licença APACHE 2.0 
+
+Elementos Visuais sob Creative Commons By Figma
