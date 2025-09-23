@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sistema_agendamento
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./newcheck-api-v5.6/sql:/docker-entrypoint-initdb.d
+
+  redis:
+    image: redis:6
+    restart: always
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./newcheck-api-v5.6
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./newcheck-api-v5.6:/usr/src/app
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: sistema_agendamento
+      DB_PORT: 3306
+      JWT_SECRET: 1234
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  db_data:
