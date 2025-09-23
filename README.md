@@ -104,27 +104,6 @@ Solicitar Consulta → agenda com calendário, médico disponível, horário e l
 Endpoints principais da API
 Autenticação Cliente
 
-POST /api/auth/cliente/register → cadastra cliente
-
-POST /api/auth/cliente/login → login
-
-Autenticação Médico
-
-POST /api/auth/medico/register → cadastra médico
-
-POST /api/auth/medico/login → login
-
-Médicos
-
-GET /api/medicos/disponiveis?data=YYYY-MM-DD
-
-Consultas
-
-POST /api/consultas (JWT obrigatório)
-
-GET /api/consultas?cpf=123...&crm=CRM123...
-
-GET /api/consultas/horarios?data=YYYY-MM-DD&crm=CRM12345
 
  Modo Local (sem Docker)
 1. Criar banco manualmente
@@ -142,22 +121,6 @@ npm run dev
 
 4. Rodar Seed
  Usuários de teste
-
-Após rodar seed_medicos.sql, você terá:
-
-Médico:
-
-CRM: CRM12345
-
-Senha: Cadastro via API
-
-Cliente:
-
-CPF: 12345678900
-
-Senha: Cadastro via API
-
-(Seed com cadastro para teste)
 
 5. Rodar app
 
