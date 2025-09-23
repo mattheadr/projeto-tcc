@@ -8,19 +8,28 @@ A aplicação permite que os usuários marquem consultas, controlem seus horári
 ## Tecnologias utilizadas
 
 -Frontend Mobile: React Native (Expo)
+
 -Frontend: CSS + Next.js
+
 -Backend: Javascript + react-native
+
 -Backend API: Node.js + Express
+
 -Banco: MySQL 
+
 -Autenticação: JWT
 
 Validações: Yup + utilitários próprios
+
 Mapa/Localização: react-native-maps + expo-location
 
 ## Funcionalidades
  -Cadastro/Login clientes e médicos
+ 
  -Agendamento com data, médico, tipo, horário, preço e local no mapa
+ 
  -JWT + validação de campos
+ 
  -Docker Compose funcional
 
 ## Estrutura do Projeto
@@ -156,8 +165,11 @@ npx expo start
 
  ## Autores
  -Arildo Matheus
+ 
  -Davi Oliveira Lopes
+ 
  -Edgard Fernandes da Costa
+ 
  -Hamilton Rodrigues
 
  ## Licença 
