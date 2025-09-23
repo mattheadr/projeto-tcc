@@ -1,6 +1,6 @@
 README - NewCheck
 
-## Descrição
+## Descrição 
 
 Este projeto consiste em um sistema de agendamento para hospitais pelos alunos do curso técnico de Desenvolvimento de Sistemas da ETEC Ermelinda Giannini Teixeira.
 A aplicação permite que os usuários marquem consultas, controlem seus horários, permite a verificação de consultas marcadas(tanto para clientes quanto para médicos) e facilita a conexão hospital-paciente
