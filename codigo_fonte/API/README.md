@@ -1,0 +1,14 @@
+NewCheck API v5.6
+- Node.js + Express + MySQL
+- Rotas:
+  - POST /api/auth/cliente/register
+  - POST /api/auth/cliente/login
+  - POST /api/auth/medico/register
+  - POST /api/auth/medico/login
+  - GET /api/medicos/disponiveis?data=YYYY-MM-DD
+  - GET /api/consultas/horarios?data=YYYY-MM-DD&crm=CRM12345
+  - POST /api/consultas (protegido, JWT)
+- SQL scripts em /sql: init_db.sql, alter_add_lat_long.sql, seed_medicos.sql
+- Run:
+  - locally: copy .env.example -> .env e editar, npm install, npm run dev
+  - docker: use docker-compose na raiz do projeto (ver README_v5.6.md)
