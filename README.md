@@ -59,7 +59,7 @@ MySQL → porta 3306 (banco: sistema_agendamento)
 
 API → porta 3000 (http://localhost:3000)
 
-Scripts SQL são executados automaticamente em newcheck-api-v5.6/sql:
+Scripts SQL são executados automaticamente em newcheck-api/sql:
 
 init_db.sql → cria tabelas
 
@@ -76,7 +76,7 @@ Node.js LTS
 Expo CLI (npm install -g expo-cli ou usar npx expo)
 
 2. Instalar dependências
-cd newcheck-expo-v5.6
+cd newcheck-expo
 npm install
 
 3. Iniciar
@@ -127,7 +127,7 @@ mysql -u root -p < newcheck-api-v5.6/sql/seed_medicos.sql
 ajuste de credenciais
 
 3. Rodar API
-cd newcheck-api-v5.6
+cd newcheck-api
 npm install
 npm run dev
 
@@ -147,6 +147,8 @@ Cliente:
 CPF: 12345678900
 
 Senha: Cadastro via API
+
+(Seed com cadastro para teste)
 
 5. Rodar app
 
