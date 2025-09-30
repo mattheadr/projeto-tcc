@@ -1,144 +1,302 @@
-README - NewCheck
 
-## Descrição 
+# 🏥 NewCheck
 
-Este projeto consiste em um sistema de agendamento para hospitais pelos alunos do curso técnico de Desenvolvimento de Sistemas da ETEC Ermelinda Giannini Teixeira.
-A aplicação permite que os usuários marquem consultas, controlem seus horários, permite a verificação de consultas marcadas(tanto para clientes quanto para médicos) e facilita a conexão hospital-paciente
+  
 
-## Tecnologias utilizadas
+![](https://github.com/mattheadr/projeto-tcc/blob/main/documentacao/Captura%20de%20tela%202025-09-30%20084656.png?raw=true)
 
--Frontend Mobile: React Native (Expo)
+  
 
--Frontend: CSS + Next.js
+## 📌 Sobre o Projeto
 
--Backend: Javascript + react-native
+  
 
--Backend API: Node.js + Express
+O **NewCheck** é um sistema de agendamento para hospitais, desenvolvido pelos alunos do curso técnico de **Desenvolvimento de Sistemas da ETEC Ermelinda Giannini Teixeira**.
 
--Banco: MySQL 
+  
 
--Autenticação: JWT
+A aplicação facilita a conexão entre **hospital, médico e paciente**, permitindo:
 
-Validações: Yup + utilitários próprios
+- Marcar e gerenciar consultas
 
-Mapa/Localização: react-native-maps + expo-location
+- Visualizar agendamentos em tempo real (clientes e médicos)
 
-## Funcionalidades
- -Cadastro/Login clientes e médicos
- 
- -Agendamento com data, médico, tipo, horário, preço e local no mapa
- 
- -JWT + validação de campos
- 
- -Docker Compose funcional
+- Localizar hospitais no mapa
 
-## Estrutura do Projeto
+- Garantir autenticação segura e validações
+
+  
+
+---
+
+  
+
+## 🚀 Tecnologias Utilizadas
+
+  
+
+-  **Frontend Mobile:** [React Native](https://reactnative.dev/) (Expo)
+
+-  **Frontend Web:** [Next.js](https://nextjs.org/) + CSS
+
+-  **Backend:** [Node.js](https://nodejs.org/pt) + Express
+
+-  **Banco de Dados:** [MySQL](https://www.mysql.com/)
+
+-  **Autenticação:** [JWT](https://jwt.io/)
+
+-  **Validações:** [Yup](https://github.com/jquense/yup) + utilitários próprios
+
+-  **Mapa/Localização:** react-native-maps + expo-location
+
+-  **Containerização:** Docker + Docker Compose
+
+  
+
+---
+
+  
+
+## ✨ Funcionalidades
+
+  
+
+- Cadastro/Login de clientes e médicos
+
+- Agendamento com **data, médico, tipo, horário, preço e localização no mapa**
+
+- Autenticação via JWT + validação de campos
+
+- Banco de dados com scripts SQL prontos para seed e inicialização
+
+- Ambiente totalmente **containerizado com Docker Compose**
+
+  
+
+---
+
+  
+
+## 📂 Estrutura do Projeto
+
+  
+
 ```
+
 │ docker-compose.yml
+
 │ README.md
+
 │
-├── newcheck-expo-v5.6/        # App (React Native + Expo)
-│   ├── App.js
-│   ├── screens/
-│   ├── components/
-│   ├── utils/
-│   └── config/
+
+├── newcheck-expo-v5.6/ # Aplicativo (React Native + Expo)
+
+│ ├── App.js
+
+│ ├── screens/
+
+│ ├── components/
+
+│ ├── utils/
+
+│ └── config/
+
 │
-└── newcheck-api-v5.6/         # API (Node.js + Express + MySQL)
-    ├── server.js
-    ├── db.js
-    ├── routes/
-    ├── sql/
-    └── .env.example
+
+└── newcheck-api-v5.6/ # API (Node.js + Express + MySQL)
+
+├── server.js
+
+├── db.js
+
+├── routes/
+
+├── sql/
+
+└── .env.example
+
 ```
-## Rodando com Docker (recomendado)
-1. Pré-requisitos
 
-Docker + Docker Compose instalados
+  
 
-2. Subir tudo
+---
 
-Na raiz do projeto:
+  
 
-docker-compose up --build
+## 🐳 Rodando com Docker (recomendado)
 
-3. Serviços
+  
 
-MySQL → porta 3306 (banco: sistema_agendamento)
+### 1. Pré-requisitos
 
-API → porta 3000 (http://localhost:3000)
+- Docker + Docker Compose instalados
 
-Scripts SQL são executados automaticamente em newcheck-api/sql:
+  
 
-init_db.sql → cria tabelas
+### 2. Subir containers
 
-alter_add_lat_long.sql → adiciona latitude/longitude
+```bash
 
-seed_medicos.sql → insere médico/cliente de teste
+docker-compose  up  --build
 
-## Rodando o App (Expo)
+```
 
-1. Pré-requisitos
+  
 
-Node.js LTS
+### 3. Serviços disponíveis
 
-Expo CLI (npm install -g expo-cli ou usar npx expo)
+-  **MySQL** → porta `3306` (banco: `sistema_agendamento`)
 
-2. Instalar dependências
-cd newcheck-expo
-npm install
+-  **API** → porta `3000` → http://localhost:3000
 
-3. Iniciar
-EXPO_PUBLIC_API_HOST="http://10.0.2.2:3000" npm start   # em emulador Android
+  
 
-EXPO_PUBLIC_API_HOST="http://SEU_IP_LOCAL:3000" npm start   # em dispositivo físico
+Scripts SQL executados automaticamente em `newcheck-api-v5.6/sql`:
 
-4. Testar
+-  `init_db.sql` → cria tabelas
 
-Acesse pelo QR Code gerado no terminal ou no app Expo Go
+-  `alter_add_lat_long.sql` → adiciona latitude/longitude
 
-Login/Cadastro → cria usuário paciente ou médico
+-  `seed_medicos.sql` → insere médicos/clientes de teste
 
-Solicitar Consulta → agenda com calendário, médico disponível, horário e local no mapa
+  
 
-Endpoints principais da API
-Autenticação Cliente
+---
 
+  
 
- Modo Local (sem Docker)
-1. Criar banco manualmente
-mysql -u root -p < newcheck-api-v5.6/sql/init_db.sql
-mysql -u root -p < newcheck-api-v5.6/sql/seed_medicos.sql
+## 📱 Rodando o App (Expo)
 
-2. Configurar .env
+  
 
-ajuste de credenciais
+### 1. Pré-requisitos
 
-3. Rodar API
-cd newcheck-api
-npm install
-npm run dev
+- Node.js LTS
 
-4. Rodar Seed
- Usuários de teste
+- Expo CLI (`npm install -g expo-cli` ou usar `npx expo`)
 
-5. Rodar app
+  
 
-npx expo start
+### 2. Instalar dependências
 
- ## Autores
- -Arildo Matheus
- 
- -Davi Oliveira Lopes
- 
- -Edgard Fernandes da Costa
- 
- -Hamilton Rodrigues
+```bash
 
- ## Licença 
+cd  newcheck-expo-v5.6
 
-Este projeto está licenciado sob a licença do CPS - ETEC ERMELINDA GIANNINI TEIXEIRA. 
+npm  install
 
-Código Fonte sob licença APACHE 2.0 
+```
 
-Elementos Visuais sob Creative Commons By Figma
+  
+
+### 3. Iniciar em emulador/dispositivo
+
+```bash
+
+EXPO_PUBLIC_API_HOST="http://10.0.2.2:3000"  npm  start  # Emulador Android
+
+EXPO_PUBLIC_API_HOST="http://SEU_IP_LOCAL:3000"  npm  start  # Dispositivo físico
+
+```
+
+  
+
+### 4. Testar
+
+- Escaneie o QR Code no terminal com o **Expo Go**
+
+- Crie usuários (paciente/médico)
+
+- Solicite consultas → calendário, médico, horário e localização no mapa
+
+- Teste autenticação e endpoints principais da API
+
+  
+
+---
+
+  
+
+## 💻 Rodando Localmente (sem Docker)
+
+  
+
+### 1. Criar banco manualmente
+
+```bash
+
+mysql  -u  root  -p < newcheck-api-v5.6/sql/init_db.sql
+
+mysql  -u  root  -p < newcheck-api-v5.6/sql/seed_medicos.sql
+
+```
+
+  
+
+### 2. Configurar variáveis de ambiente
+
+- Copie `.env.example` → `.env`
+
+- Ajuste as credenciais do banco
+
+  
+
+### 3. Rodar API
+
+```bash
+
+cd  newcheck-api-v5.6
+
+npm  install
+
+npm  run  dev
+
+```
+
+  
+
+### 4. Rodar App
+
+```bash
+
+cd  newcheck-expo-v5.6
+
+npx  expo  start
+
+```
+
+  
+
+---
+
+  
+
+## 👨‍💻 Autores
+
+  
+
+- Arildo Matheus
+
+- Davi Oliveira Lopes
+
+- Edgard Fernandes da Costa
+
+- Hamilton Rodrigues
+
+  
+
+---
+
+  
+
+## 📜 Licença
+
+  
+
+Este projeto está licenciado sob a licença do **CPS - ETEC Ermelinda Giannini Teixeira**.
+
+  
+
+-  **Código Fonte:** Apache 2.0
+
+-  **Elementos Visuais:** Creative Commons BY (via Figma)
