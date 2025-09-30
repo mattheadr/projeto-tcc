@@ -33,7 +33,7 @@ Mapa/Localização: react-native-maps + expo-location
  -Docker Compose funcional
 
 ## Estrutura do Projeto
-.
+```
 │ docker-compose.yml
 │ README.md
 │
@@ -50,7 +50,7 @@ Mapa/Localização: react-native-maps + expo-location
     ├── routes/
     ├── sql/
     └── .env.example
-
+```
 ## Rodando com Docker (recomendado)
 1. Pré-requisitos
 
