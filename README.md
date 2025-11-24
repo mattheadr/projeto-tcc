@@ -13,6 +13,8 @@
 
 O **NewCheck** é um sistema de agendamento para hospitais, desenvolvido pelos alunos do curso técnico de **Desenvolvimento de Sistemas da ETEC Ermelinda Giannini Teixeira**.
 
+Link do Site para teste: https://projeto-tcc-henna.vercel.app/
+
   
 
 A aplicação facilita a conexão entre **hospital, médico e paciente**, permitindo:
