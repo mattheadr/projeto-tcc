@@ -1,0 +1,133 @@
+const { Builder, By, until } = require("selenium-webdriver");
+const chrome = require("selenium-webdriver/chrome");
+const fs = require("fs");
+
+// ============================
+// URLs A COMPARAR
+// ============================
+const URL_LOCAL = "http://localhost:3000/agendamento"; 
+const URL_ESUS = "https://agendafacil.prefeitura.sp.gov.br/agendamento";
+
+// ============================
+// CONFIG DO CHROME + LOGS
+// ============================
+let options = new chrome.Options();
+options.addArguments("--headless");
+options.addArguments("--disable-gpu");
+
+// Habilita logs de performance
+options.setLoggingPrefs({
+    performance: "ALL",
+    browser: "ALL",
+});
+
+async function analisarSistema(url, nome) {
+    console.log(`\n==============================`);
+    console.log(` Testando: ${nome}`);
+    console.log(`==============================\n`);
+
+    let driver = await new Builder()
+        .forBrowser("chrome")
+        .setChromeOptions(options)
+        .build();
+
+    try {
+        const inicio = Date.now();
+
+        await driver.get(url);
+        await driver.wait(until.elementLocated(By.css("body")), 10000);
+
+        const fim = Date.now();
+        const tempoCarregamento = (fim - inicio) / 1000;
+
+        console.log(` Tempo total de carregamento: ${tempoCarregamento}s`);
+
+        // Tempo DOMContentLoaded
+        const domContentLoaded = await driver.executeScript(
+            "return performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;"
+        );
+        console.log(` DOM Interativo: ${(domContentLoaded / 1000).toFixed(2)}s`);
+
+        // Número de elementos na página
+        const elementosDOM = await driver.executeScript(
+            "return document.getElementsByTagName('*').length;"
+        );
+        console.log(` Elementos na DOM: ${elementosDOM}`);
+
+        // Coletar logs de performance
+        const logs = await driver.manage().logs().get("performance");
+
+        let tamanhoTotal = 0;
+        let requisicoes = 0;
+        let duracoes = [];
+
+        logs.forEach((log) => {
+            const msg = JSON.parse(log.message).message;
+
+            if (msg.method === "Network.loadingFinished") {
+                requisicoes++;
+                if (msg.params.encodedDataLength) {
+                    tamanhoTotal += msg.params.encodedDataLength;
+                }
+            }
+
+            if (msg.method === "Network.responseReceived") {
+                if (msg.params.response.timing) {
+                    duracoes.push(
+                        msg.params.response.timing.receiveHeadersEnd -
+                        msg.params.response.timing.sendStart
+                    );
+                }
+            }
+        });
+
+        console.log(` Requisições totais: ${requisicoes}`);
+        console.log(` Peso total da página: ${(tamanhoTotal / 1024).toFixed(2)} KB`);
+
+        if (duracoes.length > 0) {
+            const mediaReq = duracoes.reduce((a, b) => a + b, 0) / duracoes.length;
+            console.log(` Tempo médio por requisição: ${mediaReq.toFixed(2)} ms`);
+        }
+
+        // Coletar erros de console
+        const logsBrowser = await driver.manage().logs().get("browser");
+        const erros = logsBrowser.filter(log => log.level.name === "SEVERE");
+
+        if (erros.length > 0) {
+            console.log(` Erros de console encontrados:`);
+            erros.forEach(err => console.log(" - ", err.message));
+        } else {
+            console.log("✔ Nenhum erro de console encontrado.");
+        }
+
+        // Screenshot
+        const screenshot = await driver.takeScreenshot();
+        fs.writeFileSync(`${nome.replace(" ", "_")}.png`, screenshot, "base64");
+        console.log(` Screenshot salva como: ${nome.replace(" ", "_")}.png\n`);
+
+        return {
+            nome,
+            tempoCarregamento,
+            domContentLoaded,
+            elementosDOM,
+            requisicoes,
+            tamanhoTotal,
+            erros: erros.length,
+        };
+
+    } catch (error) {
+        console.error(` Erro ao testar ${nome}:`, error);
+    } finally {
+        await driver.quit();
+    }
+}
+
+(async () => {
+    const resultadoLocal = await analisarSistema(URL_LOCAL, "SISTEMA_LOCAL");
+    const resultadoEsus  = await analisarSistema(URL_ESUS,  "ESUS");
+
+    console.log("\n==============================");
+    console.log("RESULTADO FINAL DA COMPARAÇÃO");
+    console.log("==============================\n");
+    console.table([resultadoLocal, resultadoEsus]);
+})();
