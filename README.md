@@ -87,7 +87,7 @@ A aplicação facilita a conexão entre **hospital, médico e paciente**, permit
 ### Rodando o sistema em dispositivos mobile
 
 
-Baixe o APK aqui: 
+Baixe o APK aqui: em breve
   
 
 
