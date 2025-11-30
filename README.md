@@ -23,7 +23,7 @@ A aplicação facilita a conexão entre **hospital, médico e paciente**, permit
 
 - Visualizar agendamentos em tempo real (clientes e médicos)
 
-- Localizar hospitais no mapa
+-Envio de notificações automáticas para confirmação
 
 - Garantir autenticação segura e validações
 
@@ -82,7 +82,15 @@ A aplicação facilita a conexão entre **hospital, médico e paciente**, permit
 
   Site publicado em https://projeto-tcc-henna.vercel.app/ 
 
-  
+## Rodando localmente
+
+-Baixe o repositório ou clone-o com o git
+
+-Use o npm install para baixar as dependências
+
+-npm run dev (como dev)
+
+-npm run build (como teste)
 
 ### Rodando o sistema em dispositivos mobile
 
