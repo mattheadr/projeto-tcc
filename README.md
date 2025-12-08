@@ -119,6 +119,21 @@ Baixe o APK aqui: em breve
 
 ##  Licença
 
+
+### Código-Fonte
+
+O código-fonte deste projeto está licenciado sob a **Apache License 2.0**. Consulte o arquivo [LICENSE](LICENSE) para detalhes.
+
+### Elementos Visuais e Conteúdo
+
+Todo o conteúdo visual (incluindo ícones, gráficos e documentação) deste projeto está licenciado sob a **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+
+Você é livre para:
+* **Compartilhar** — copiar e redistribuir o material em qualquer meio ou formato.
+* **Adaptar** — remixar, transformar e construir sobre o material.
+
+Sob as seguintes condições:
+* **Atribuição (BY):** Você deve dar o crédito apropriado, fornecer um link para a licença e indicar se foram feitas alterações.
   
 
 Este projeto está licenciado sob a licença do **CPS - ETEC Ermelinda Giannini Teixeira**.
