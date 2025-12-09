@@ -1,5 +1,5 @@
 
-# 🏥 NewCheck
+#  NewCheck
 
   
 
@@ -7,11 +7,13 @@
 
   
 
-## 📌 Sobre o Projeto
+##  Sobre o Projeto
 
   
 
 O **NewCheck** é um sistema de agendamento para hospitais, desenvolvido pelos alunos do curso técnico de **Desenvolvimento de Sistemas da ETEC Ermelinda Giannini Teixeira**.
+
+Link do Site para teste: https://projeto-tcc-henna.vercel.app/
 
   
 
@@ -21,7 +23,7 @@ A aplicação facilita a conexão entre **hospital, médico e paciente**, permit
 
 - Visualizar agendamentos em tempo real (clientes e médicos)
 
-- Localizar hospitais no mapa
+-Envio de notificações automáticas para confirmação
 
 - Garantir autenticação segura e validações
 
@@ -31,15 +33,15 @@ A aplicação facilita a conexão entre **hospital, médico e paciente**, permit
 
   
 
-## 🚀 Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
   
 
--  **Frontend Mobile:** [React Native](https://reactnative.dev/) (Expo)
+-  **Frontend Mobile:** CSS + [Tailwind](https://tailwindcss.com/) 
 
--  **Frontend Web:** [Next.js](https://nextjs.org/) + CSS
+-  **Frontend Web:** CSS + [Tailwind](https://tailwindcss.com/) + [Vite](https://vite.dev/)
 
--  **Backend:** [Node.js](https://nodejs.org/pt) + Express
+-  **Backend:** [Node.js](https://nodejs.org/pt) + [Typescript](https://www.typescriptlang.org/)
 
 -  **Banco de Dados:** [MySQL](https://www.mysql.com/) + [supabase](https://github.com/supabase/supabase) para rodar banco na web
 
@@ -47,9 +49,9 @@ A aplicação facilita a conexão entre **hospital, médico e paciente**, permit
 
 -  **Validações:** [Yup](https://github.com/jquense/yup) + utilitários próprios
 
--  **Agente de IA:** [TensorFlow](https://github.com/tensorflow/tensorflow)
-
--  **Containerização:** Docker + Docker Compose
+-  **Agente de IA:** [TensorFlow JS](https://github.com/tensorflow/tensorflow)
+  
+-  **APK + publish:** [Vercel](https://vercel.com) 
 
   
 
@@ -57,221 +59,47 @@ A aplicação facilita a conexão entre **hospital, médico e paciente**, permit
 
   
 
-## ✨ Funcionalidades
+##  Funcionalidades
 
   
 
 - Cadastro/Login de clientes e médicos
 
-- Agendamento com **data, médico, tipo, horário, preço e localização no mapa**
+- Agendamento com **data, médico, tipo, horário**
+
+- Agente de IA com Machine Learing para pacientes faltosos
 
 - Autenticação via JWT + validação de campos
 
 - Banco de dados com scripts SQL prontos para seed e inicialização
 
-- Ambiente totalmente **containerizado com Docker Compose**
+- Ambiente rodando totalmente **Em servidores**
 
   
 
----
 
+##  Rodando o Sistema pela Web
+
+  Site publicado em https://projeto-tcc-henna.vercel.app/ 
+
+## Rodando localmente
+
+-Baixe o repositório ou clone-o com o git
+
+-Use o npm install para baixar as dependências
+
+-npm run dev (como dev)
+
+-npm run build (como teste)
+
+### Rodando o sistema em dispositivos mobile
+
+
+Baixe o APK aqui: em breve
   
 
-## 📂 Estrutura do Projeto
 
-  
-
-```
-
-│ docker-compose.yml
-
-│ README.md
-
-│
-
-├── newcheck-expo-v5.6/ # Aplicativo (React Native + Expo)
-
-│ ├── App.js
-
-│ ├── screens/
-
-│ ├── components/
-
-│ ├── utils/
-
-│ └── config/
-
-│
-
-└── newcheck-api-v5.6/ # API (Node.js + Express + MySQL)
-
-├── server.js
-
-├── db.js
-
-├── routes/
-
-├── sql/
-
-└── .env.example
-
-```
-
-  
-
----
-
-  
-
-## 🐳 Rodando com Docker (recomendado)
-
-  
-
-### 1. Pré-requisitos
-
-- Docker + Docker Compose instalados
-
-  
-
-### 2. Subir containers
-
-```bash
-
-docker-compose  up  --build
-
-```
-
-  
-
-### 3. Serviços disponíveis
-
--  **MySQL** → porta `3306` (banco: `sistema_agendamento`)
-
--  **API** → porta `3000` → http://localhost:3000
-
-  
-
-Scripts SQL executados automaticamente em `newcheck-api-v5.6/sql`:
-
--  `init_db.sql` → cria tabelas
-
--  `alter_add_lat_long.sql` → adiciona latitude/longitude
-
--  `seed_medicos.sql` → insere médicos/clientes de teste
-
-  
-
----
-
-  
-
-## 📱 Rodando o App (Expo)
-
-  
-
-### 1. Pré-requisitos
-
-- Node.js LTS
-
-- Expo CLI (`npm install -g expo-cli` ou usar `npx expo`)
-
-  
-
-### 2. Instalar dependências
-
-```bash
-
-cd  newcheck-expo-v5.6
-
-npm  install
-
-```
-
-  
-
-### 3. Iniciar em emulador/dispositivo
-
-```bash
-
-EXPO_PUBLIC_API_HOST="http://10.0.2.2:3000"  npm  start  # Emulador Android
-
-EXPO_PUBLIC_API_HOST="http://SEU_IP_LOCAL:3000"  npm  start  # Dispositivo físico
-
-```
-
-  
-
-### 4. Testar
-
-- Escaneie o QR Code no terminal com o **Expo Go**
-
-- Crie usuários (paciente/médico)
-
-- Solicite consultas → calendário, médico, horário e localização no mapa
-
-- Teste autenticação e endpoints principais da API
-
-  
-
----
-
-  
-
-## 💻 Rodando Localmente (sem Docker)
-
-  
-
-### 1. Criar banco manualmente
-
-```bash
-
-mysql  -u  root  -p < newcheck-api-v5.6/sql/init_db.sql
-
-mysql  -u  root  -p < newcheck-api-v5.6/sql/seed_medicos.sql
-
-```
-
-  
-
-### 2. Configurar variáveis de ambiente
-
-- Copie `.env.example` → `.env`
-
-- Ajuste as credenciais do banco
-
-  
-
-### 3. Rodar API
-
-```bash
-
-cd  newcheck-api-v5.6
-
-npm  install
-
-npm  run  dev
-
-```
-
-  
-
-### 4. Rodar App
-
-```bash
-
-cd  newcheck-expo-v5.6
-
-npx  expo  start
-
-```
-
-  
-
----
-
-  
-
-## 👨‍💻 Autores
+##  Autores
 
   
 
@@ -289,8 +117,23 @@ npx  expo  start
 
   
 
-## 📜 Licença
+##  Licença
 
+
+### Código-Fonte
+
+O código-fonte deste projeto está licenciado sob a **Apache License 2.0**. Consulte o arquivo [LICENSE](LICENSE) para detalhes.
+
+### Elementos Visuais e Conteúdo
+
+Todo o conteúdo visual (incluindo ícones, gráficos e documentação) deste projeto está licenciado sob a **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+
+Você é livre para:
+* **Compartilhar** — copiar e redistribuir o material em qualquer meio ou formato.
+* **Adaptar** — remixar, transformar e construir sobre o material.
+
+Sob as seguintes condições:
+* **Atribuição (BY):** Você deve dar o crédito apropriado, fornecer um link para a licença e indicar se foram feitas alterações.
   
 
 Este projeto está licenciado sob a licença do **CPS - ETEC Ermelinda Giannini Teixeira**.
